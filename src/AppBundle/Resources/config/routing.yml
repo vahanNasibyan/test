@@ -1,0 +1,37 @@
+app_frontend_home:
+    path: /
+    defaults: { _controller: AppBundle:Default:index }
+    options:
+        expose: true
+
+app_frontend_album:
+    path: /album/{id}
+    defaults: { _controller: AppBundle:Default:index }
+    options:
+        expose: true
+
+app_frontend_paginated_images:
+    path: /album/{id}/page/{page}
+    defaults: { _controller: AppBundle:Default:index }
+    options:
+        expose: true
+
+app_api_import_fixture:
+    path: /api/import-fixture
+    defaults: { _controller: AppBundle:Fixture:importFixture }
+
+app_api_truncate_database:
+    path: /api/truncate-database
+    defaults: { _controller: AppBundle:Fixture:truncateDatabase }
+
+app_api_albums_with_max_images:
+    path: /api/albums/filter-max-images/{maxImagesCount}
+    defaults: { _controller: AppBundle:Album:getAlbumsWithMaxImages }
+    options:
+        expose: true
+
+app_api_images_paginated:
+    path: /api/albums/{albumId}/page/{pageId}
+    defaults: { _controller: AppBundle:Image:getPaginatedImages }
+    options:
+        expose: true

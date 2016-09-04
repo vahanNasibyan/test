@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block body %}
+    <div id="overall"></div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" type="text/css" />
+
+    <link rel="stylesheet" href="{{ asset('bundles/bootstrap/css/bootstrap.min.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/app.min.css') }}" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/app/js/deps.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+    <script type="text/javascript" src="{{ asset('bundles/app/js/app.min.js') }}"></script>
+
+    <script id="template-rootLayoutView" type="text/template">
+        <section id="albums-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6" id="albums-wrapper">
+                        <h1>Albums</h1>
+                        <div id="albums"></div>
+                    </div>
+
+                    <div class="col-sm-6" id="albums-with-max-images-wrapper">
+                        <h1>Albums with max <%= window.app.albumMaxImagesCount %> images</h1>
+                        <div id="albums-with-max-images"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="images-content">
+            <div class="container">
+                <div class="row">
+                    <div id="pagination-top" class="pagination"></div>
+                    <div id="images"></div>
+                    <div id="pagination-bottom" class="pagination"></div>
+                </div>
+            </div>
+        </section>
+    </script>
+
+    <script id="template-albumItemView" type="text/template">
+        <a href="<%= getAlbumDetailsUrl() %>"><%= name %></a>
+    </script>
+
+    <script id="template-imageItemView" type="text/template">
+        <div class="image">
+            <img src="{{ asset('storage/images/') }}<%= filename %>" />
+        </div>
+        <div class="description"><%= description %></div>
+    </script>
+{% endblock %}
